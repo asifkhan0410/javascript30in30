@@ -63,12 +63,13 @@
                 audio.play()
                 key.classList.add("playing")
             }
-            async function playmobileSound( e){
-                const audiomobile = document.querySelector(`audio[data-key='${e.target.parentNode.dataset.key}']`);
-                const keymobile = document.querySelector(`.key[data-key="${e.target.parentNode.dataset.key}"]`);
+             function playmobileSound( e){
+                console.log(e)
+                const audiomobile = document.querySelector(`audio[data-key='${e.path[0].parentNode.dataset.key}']`);
+                const keymobile = document.querySelector(`.key[data-key="${e.path[0].parentNode.dataset.key}"]`);
                 if(!audiomobile) return;
                 audiomobile.currentTime = 0;
-                await audiomobile.play();
+                 audiomobile.play();
                 keymobile.classList.add("playing");
             }
 
@@ -79,9 +80,9 @@
 
             const keys = document.querySelectorAll('.key')
             keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-            keys.forEach(key => key.addEventListener('touchend', removeTransition));
+            // keys.forEach(key => key.addEventListener('touchend', removeTransition));
             window.addEventListener("keydown", playSound);
-            window.addEventListener("touchstart", playmobileSound);
+            window.addEventListener("click", playmobileSound);
         </script>
 
     </body>
