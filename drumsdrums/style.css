@@ -51,3 +51,12 @@ html {
     letter-spacing: .1rem;
     color: #ffc600;
   }
+
+  @media only screen and (max-width: 375px){
+    .key{
+      padding: 2rem .5rem;
+      width: 8rem;
+      height: 7rem;
+      background: rgba(0,0,0,0.7);
+    }
+  }
