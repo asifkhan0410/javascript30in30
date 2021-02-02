@@ -26,6 +26,12 @@ var myGameArea = {
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
+        window.addEventListener('keydown', function (e) {
+            myGameArea.key = e.keyCode;
+        })
+        window.addEventListener('keyup', function (e) {
+            myGameArea.key = false;
+        })
     },
     clear : function() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -71,12 +77,16 @@ function moveleft() {
 function moveright() {
   myGamePiece.speedX += 1;
 }
+function stopMove() {
+  myGamePiece.speedX = 0;
+  myGamePiece.speedY = 0;
+}
 
 </script>
-<button onclick="moveup()">UP</button>
-<button onclick="movedown()">DOWN</button>
-<button onclick="moveleft()">LEFT</button>
-<button onclick="moveright()">RIGHT</button>
+<button onmousedown="moveup()" onmouseup="stopMove()" ontouchstart="moveup()">UP</button>
+<button onmousedown="movedown()" onmouseup="stopMove()" ontouchstart="movedown()">DOWN</button>
+<button onmousedown="moveleft()" onmouseup="stopMove()" ontouchstart="moveleft()">LEFT</button>
+<button onmousedown="moveright()" onmouseup="stopMove()" ontouchstart="moveright()">RIGHT</button>
 
 <p>We have created a game area! (or at least an empty canvas)</p>
 
