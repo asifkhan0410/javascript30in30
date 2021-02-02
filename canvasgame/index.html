@@ -42,6 +42,11 @@ function component(width, height, color, x, y) {
   ctx.fillRect(this.x, this.y, this.width, this.height);
 }
 
+function updateGameArea() {
+  myGameArea.clear();
+  myGamePiece.update();
+}
+
 </script>
 
 <p>We have created a game area! (or at least an empty canvas)</p>
