@@ -15,12 +15,15 @@ var myGamePiece;
 var myObstacles = [];
 var myScore;
 var mySound;
+var myMusic;
 
 function startGame() {
     
     myGamePiece = new component(30, 30, "red", 10, 120);
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
-    mySound = new sound("bounce.mp3");
+    mySound = new sound("kick.wav");
+    myMusic = new sound("gametheme.mp3");
+    myMusic.play();
     myGameArea.start();
 }
 
