@@ -1,8 +1,26 @@
+
+
 var myGamePiece;
-var myObstacles = [];
+let myObstacles = [];
 var myScore;
 var mySound;
 var myMusic;
+let highScore=[];
+
+function start(){
+    startGame();
+    updateGameArea();
+    myObstacles=[]
+}
+
+const highscore = document.querySelector('.highscore');
+
+function displayHighScore(){
+    const html = highScore.map(high => {
+        return `${high}`
+    })
+    return highscore.innerText = html
+}
 
 function startGame() {
     
@@ -38,6 +56,9 @@ var myGameArea = {
     },
     stop : function() {
     clearInterval(this.interval);
+    highScore.push(myGameArea.frameNo);
+    highScore.sort((a,b) => a<b?1:-1)
+    displayHighScore()
     }
 }
 function everyinterval(n) {
@@ -106,12 +127,13 @@ this.newPos = function() {
   }
 }
 
+
 function updateGameArea() {
     var x, y,height, gap, minHeight, maxHeight, minGap, maxGap;
   for (i = 0; i < myObstacles.length; i += 1) {
     if (myGamePiece.crashWith(myObstacles[i])) {
         mySound.play();
-        myMusic.stop()
+        myMusic.stop();
         myGameArea.stop();
       return;
     }
@@ -138,7 +160,7 @@ function updateGameArea() {
     myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
   }
   for (i = 0; i < myObstacles.length; i += 1) {
-    myObstacles[i].x += -1;
+    myObstacles[i].x += -2;
     myObstacles[i].update();
   }
   myScore.text = "SCORE: " + myGameArea.frameNo;
@@ -166,3 +188,4 @@ function updateGameArea() {
 //   myGamePiece.speedX = 0;
 //   myGamePiece.speedY = 0;
 // }
+
