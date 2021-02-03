@@ -8,7 +8,7 @@ function startGame() {
     
     myGamePiece = new component(30, 30, "red", 10, 120);
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
-    myMusic = new sound("bgmusic.mp3");
+    myMusic = new sound("1992bgmusic.mp3");
     mySound = new sound("kick.wav");
     console.log(myMusic)
     myMusic.play();
@@ -18,25 +18,27 @@ function startGame() {
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
-        this.canvas.width = 480;
-        this.canvas.height = 270;
+        this.canvas.width = 680;
+        this.canvas.height = 370;
+        this.canvas.fillStyle = "red"
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea, 20);
         window.addEventListener('keydown', function (e) {
-            myGameArea.key = e.keyCode;
-        })
-        window.addEventListener('keyup', function (e) {
-            myGameArea.key = false;
-        })
+            myGameArea.keys = (myGameArea.keys || []);
+            myGameArea.keys[e.keyCode] = true;
+          })
+          window.addEventListener('keyup', function (e) {
+            myGameArea.keys[e.keyCode] = false;
+          })
     },
     clear : function() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  },
-  stop : function() {
+    },
+    stop : function() {
     clearInterval(this.interval);
-  }
+    }
 }
 function everyinterval(n) {
   if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
@@ -48,18 +50,21 @@ function sound(src) {
   this.sound.src = src;
   this.sound.setAttribute("preload", "auto");
   this.sound.setAttribute("controls", "none");
+  if(src==="1992bgmusic.mp3"){
+      this.sound.setAttribute("loop", "true");
+  }
   this.sound.style.display = "none";
   document.body.appendChild(this.sound);
   this.play = async function(){
     await this.sound.play();
   }
-  this.stop = function(){
-    this.sound.pause();
+  this.stop = async function(){
+    await this.sound.pause();
   }
 }
 
 function component(width, height, color, x, y,type) {
-    this.type= type;
+  this.type= type;
   this.width = width;
   this.height = height;
   this.x = x;
@@ -107,13 +112,21 @@ function updateGameArea() {
     if (myGamePiece.crashWith(myObstacles[i])) {
         mySound.play();
         myMusic.stop()
-      myGameArea.stop();
+        myGameArea.stop();
       return;
     }
   }
   myGameArea.clear();
+
+  myGamePiece.speedX = 0;
+  myGamePiece.speedY = 0;
+  //if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -1; }
+  if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 1; }
+  if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -1; }
+  if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 1; } 
+
   myGameArea.frameNo += 1;
-  if (myGameArea.frameNo == 1 || everyinterval(150)) {
+  if (myGameArea.frameNo == 1 || everyinterval(250)) {
     x = myGameArea.canvas.width;
     minHeight = 20;
     maxHeight = 200;
@@ -134,22 +147,22 @@ function updateGameArea() {
   myGamePiece.update();
 }
 
-function moveup() {
-  myGamePiece.speedY -= 1;
-}
+// function moveup() {
+//   myGamePiece.speedY -= 1;
+// }
 
-function movedown() {
-  myGamePiece.speedY += 1;
-}
+// function movedown() {
+//   myGamePiece.speedY += 1;
+// }
 
-function moveleft() {
-  myGamePiece.speedX -= 1;
-}
+// function moveleft() {
+//   myGamePiece.speedX -= 1;
+// }
 
-function moveright() {
-  myGamePiece.speedX += 1;
-}
-function stopMove() {
-  myGamePiece.speedX = 0;
-  myGamePiece.speedY = 0;
-}
+// function moveright() {
+//   myGamePiece.speedX += 1;
+// }
+// function stopMove() {
+//   myGamePiece.speedX = 0;
+//   myGamePiece.speedY = 0;
+// }

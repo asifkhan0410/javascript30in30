@@ -4,9 +4,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Canvas Game</title>
 <style>
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 canvas {
-    border: 1px solid #d3d3d3;
+    border: 2px solid black;
     background-color: #f1f1f1;
+    margin: 10px;
 }
 </style>
 </head>
@@ -14,12 +21,12 @@ canvas {
 <script src="main.js"></script>
 
     <button onclick="startGame()">Lets Play</button>
-    <button onmousedown="moveup()" onmouseup="stopMove()" ontouchstart="moveup()">UP</button>
+    <!-- <button onmousedown="moveup()" onmouseup="stopMove()" ontouchstart="moveup()">UP</button>
     <button onmousedown="movedown()" onmouseup="stopMove()" ontouchstart="movedown()">DOWN</button>
     <button onmousedown="moveleft()" onmouseup="stopMove()" ontouchstart="moveleft()">LEFT</button>
-    <button onmousedown="moveright()" onmouseup="stopMove()" ontouchstart="moveright()">RIGHT</button>
+    <button onmousedown="moveright()" onmouseup="stopMove()" ontouchstart="moveright()">RIGHT</button> -->
 
-    <p>We have created a game area! (or at least an empty canvas)</p>
+    <p>Lets play the game of UP & DOWN</p>
 
 </body>
 </html>
