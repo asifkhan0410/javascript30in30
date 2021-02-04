@@ -5,7 +5,14 @@ let myObstacles = [];
 var myScore;
 var mySound;
 var myMusic;
-let highScore=[];
+let storedhighscore=JSON.parse(localStorage.getItem('highscore'));
+let highScore= [];
+if(storedhighscore!==null){
+    storedhighscore.map(hs => {
+    highScore.push(hs)
+});
+}
+console.log(storedhighscore)
 
 function start(){
     startGame();
@@ -16,10 +23,13 @@ function start(){
 const highscore = document.querySelector('.highscore');
 
 function displayHighScore(){
-    const html = highScore.map(high => {
-        return `${high}`
-    })
-    return highscore.innerText = html
+    const heading = document.createElement('headerscore');
+    heading.innerHTML="High Score"
+    const html = highScore.slice(0,5).map(high => {
+        return `<li><span class= "score">${high}</span></li>`
+    }).join(" ")
+    return highscore.innerHTML = html
+    
 }
 
 function startGame() {
@@ -58,7 +68,9 @@ var myGameArea = {
     clearInterval(this.interval);
     highScore.push(myGameArea.frameNo);
     highScore.sort((a,b) => a<b?1:-1)
+    highscore.innerHTML = "High Score"
     displayHighScore()
+    localStorage.setItem("highscore", JSON.stringify(highScore));
     }
 }
 function everyinterval(n) {
@@ -143,24 +155,24 @@ function updateGameArea() {
   myGamePiece.speedX = 0;
   myGamePiece.speedY = 0;
   //if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -1; }
-  if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 1; }
-  if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -1; }
-  if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 1; } 
+  if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 2; }
+  if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -2; }
+  if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 2; } 
 
   myGameArea.frameNo += 1;
-  if (myGameArea.frameNo == 1 || everyinterval(250)) {
+  if (myGameArea.frameNo == 1 || everyinterval(50)) {
     x = myGameArea.canvas.width;
     minHeight = 20;
     maxHeight = 200;
     height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
     minGap = 50;
-    maxGap = 200;
+    maxGap = 130;
     gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
     myObstacles.push(new component(10, height, "green", x, 0));
     myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
   }
   for (i = 0; i < myObstacles.length; i += 1) {
-    myObstacles[i].x += -2;
+    myObstacles[i].x += -6;
     myObstacles[i].update();
   }
   myScore.text = "SCORE: " + myGameArea.frameNo;
