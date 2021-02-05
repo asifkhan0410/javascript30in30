@@ -39,7 +39,12 @@ function startGame() {
     myMusic = new sound("1992bgmusic.mp3");
     mySound = new sound("kick.wav");
     console.log(myMusic)
-    myMusic.play();
+    var bg = myMusic.play();
+    if(bg !== undefined){
+        bg.then(a => {
+            myMusic.stop();
+        })
+    }
     myGameArea.start();
 }
 
@@ -91,9 +96,12 @@ function sound(src) {
   this.play = async function(){
     await this.sound.play();
   }
-  this.stop = async function(){
-    await this.sound.pause();
+  this.stop =  function(){
+     if(this.sound.play() !== undefined){
+         this.sound.play().then(a => {
+             this.sound.pause();})
   }
+}
 }
 
 function component(width, height, color, x, y,type) {
@@ -165,8 +173,8 @@ function updateGameArea() {
     minHeight = 20;
     maxHeight = 200;
     height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-    minGap = 50;
-    maxGap = 130;
+    minGap = 70;
+    maxGap = 170;
     gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
     myObstacles.push(new component(10, height, "green", x, 0));
     myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
