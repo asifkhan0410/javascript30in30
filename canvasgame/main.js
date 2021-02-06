@@ -1,4 +1,16 @@
+const backgroundpicture = document.querySelector(".background");
+const title = document.querySelector(".title");
+backgroundpicture.width = 1280;
+backgroundpicture.height= 600; 
 
+var particles = Particles.init({
+	selector: '.background',
+  color: ['#faf8f9'],
+  connectParticles: true, 
+  speed : 0.7,
+  maxParticles: 150,
+  sizeVariations:2
+});
 
 var myGamePiece;
 let myObstacles = [];
@@ -12,7 +24,7 @@ if(storedhighscore!==null){
     highScore.push(hs)
 });
 }
-console.log(storedhighscore)
+//console.log(storedhighscore)
 
 function start(){
     startGame();
@@ -34,23 +46,19 @@ function displayHighScore(){
 
 function startGame() {
     
-    myGamePiece = new component(30, 30, "red", 10, 120);
-    myScore = new component("30px", "Consolas", "black", 280, 40, "text");
+    myGamePiece = new component(30, 30, "#faf8f9", 10, 120);
+    myScore = new component("20px", "Consolas", "#faf8f9", 480, 40, "text");
     myMusic = new sound("1992bgmusic.mp3");
     mySound = new sound("kick.wav");
     console.log(myMusic)
     myMusic.play();
-    // if(bg !== undefined){
-    //     bg.then(a => {
-    //         myMusic.stop();
-    //     })
-    // }
     myGameArea.start();
 }
 
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
+        this.canvas.className="playelement"
         this.canvas.width = 680;
         this.canvas.height = 370;
         this.canvas.fillStyle = "red"
@@ -71,11 +79,13 @@ var myGameArea = {
     },
     stop : function() {
     clearInterval(this.interval);
+    title.style.display ="block";
+    highscore.style.display ="block";
     highScore.push(myGameArea.frameNo);
     highScore.sort((a,b) => a<b?1:-1)
     highscore.innerHTML = "High Score"
     displayHighScore()
-    localStorage.setItem("highscore", JSON.stringify(highScore));
+    localStorage.setItem("highscore", JSON.stringify(highScore.slice(0,5)));
     }
 }
 function everyinterval(n) {
@@ -136,7 +146,6 @@ this.newPos = function() {
     var otherright = otherobj.x + (otherobj.width);
     var othertop = otherobj.y;
     var otherbottom = otherobj.y + (otherobj.height);
-    console.log({mytop,myright,myleft,mybottom})
     var crash = true;
     if (((mybottom < othertop) ||
     (mytop > otherbottom) ||
@@ -169,7 +178,7 @@ function updateGameArea() {
   if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 2; } 
 
   myGameArea.frameNo += 1;
-  if (myGameArea.frameNo == 1 || everyinterval(50)) {
+  if (myGameArea.frameNo == 1 || everyinterval(60)) {
     x = myGameArea.canvas.width;
     minHeight = 20;
     maxHeight = 200;
@@ -177,8 +186,8 @@ function updateGameArea() {
     minGap = 70;
     maxGap = 170;
     gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-    myObstacles.push(new component(10, height, "green", x, 0));
-    myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+    myObstacles.push(new component(10, height, "#161009", x, 0));
+    myObstacles.push(new component(10, x - height - gap, "#161009", x, height + gap));
   }
   for (i = 0; i < myObstacles.length; i += 1) {
     myObstacles[i].x += -6;
@@ -187,27 +196,6 @@ function updateGameArea() {
   myScore.text = "SCORE: " + myGameArea.frameNo;
   myScore.update();
   myGamePiece.newPos();
-  console.log(myGamePiece.newPos())
   myGamePiece.update();
 }
-
-// function moveup() {
-//   myGamePiece.speedY -= 1;
-// }
-
-// function movedown() {
-//   myGamePiece.speedY += 1;
-// }
-
-// function moveleft() {
-//   myGamePiece.speedX -= 1;
-// }
-
-// function moveright() {
-//   myGamePiece.speedX += 1;
-// }
-// function stopMove() {
-//   myGamePiece.speedX = 0;
-//   myGamePiece.speedY = 0;
-// }
 
