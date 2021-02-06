@@ -39,12 +39,12 @@ function startGame() {
     myMusic = new sound("1992bgmusic.mp3");
     mySound = new sound("kick.wav");
     console.log(myMusic)
-    var bg = myMusic.play();
-    if(bg !== undefined){
-        bg.then(a => {
-            myMusic.stop();
-        })
-    }
+    myMusic.play();
+    // if(bg !== undefined){
+    //     bg.then(a => {
+    //         myMusic.stop();
+    //     })
+    // }
     myGameArea.start();
 }
 
@@ -136,11 +136,12 @@ this.newPos = function() {
     var otherright = otherobj.x + (otherobj.width);
     var othertop = otherobj.y;
     var otherbottom = otherobj.y + (otherobj.height);
+    console.log({mytop,myright,myleft,mybottom})
     var crash = true;
-    if ((mybottom < othertop) ||
+    if (((mybottom < othertop) ||
     (mytop > otherbottom) ||
     (myright < otherleft) ||
-    (myleft > otherright)) {
+    (myleft > otherright)) && mytop>-29 && mybottom<399) {
       crash = false;
     }
     return crash;
@@ -186,6 +187,7 @@ function updateGameArea() {
   myScore.text = "SCORE: " + myGameArea.frameNo;
   myScore.update();
   myGamePiece.newPos();
+  console.log(myGamePiece.newPos())
   myGamePiece.update();
 }
 
