@@ -47,7 +47,7 @@ function displayHighScore(){
 function startGame() {
     
     myGamePiece = new component(30, 30, "#faf8f9", 10, 120);
-    myScore = new component("20px", "Consolas", "#faf8f9", 480, 40, "text");
+    myScore = new component("20px", "Consolas", "#faf8f9", 540, 35, "text");
     myMusic = new sound("1992bgmusic.mp3");
     mySound = new sound("kick.wav");
     console.log(myMusic)
