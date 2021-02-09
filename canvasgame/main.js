@@ -39,22 +39,21 @@ async function start(){
     myObstacles=[]; //array is again initialized to remove the obstacles   
 }
 
+//this function helps us to display high score in the right corner of canvas
 function displayHighScore(){
     const heading = document.createElement('headerscore');
     heading.innerHTML="High Score"
     const html = highScore.slice(0,5).map(high => {
         return `<li><span class= "score">${high}</span></li>`
     }).join(" ")
-    return highscore.innerHTML = html
-    
+    return highscore.innerHTML = html    
 }
 
-async function startGame() {
-    
+async function startGame() {    
     myGamePiece = new component(30, 30, "#faf8f9", 10, 120);
     myScore = new component("20px", "Consolas", "#faf8f9", 540, 35, "text");
-    myMusic = new sound("1992bgmusic.mp3");
-    mySound = new sound("kick.wav");
+    myMusic = new sound("1992bgmusic.mp3"); //background music
+    mySound = new sound("kick.wav"); //sound when the gamepiece gets crashed
     await myMusic.play();
     myGameArea.start();
 }
@@ -79,20 +78,22 @@ var myGameArea = {
           })
     },
     clear : function() {
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
     stop : function() {
-    clearInterval(this.interval);
-    title.style.display ="block";
-    highscore.style.display ="block";
-    playbutton.style.display ="block"
-    highScore.push(myGameArea.frameNo);
-    highScore.sort((a,b) => a<b?1:-1)
-    highscore.innerHTML = "High Score"
-    displayHighScore()
-    localStorage.setItem("highscore", JSON.stringify(highScore.slice(0,5)));
+      clearInterval(this.interval);
+      title.style.display ="block";
+      highscore.style.display ="block";
+      playbutton.style.display ="block"
+      highScore.push(myGameArea.frameNo);
+      highScore.sort((a,b) => a<b?1:-1)
+      highscore.innerHTML = "High Score"
+      displayHighScore()
+      localStorage.setItem("highscore", JSON.stringify(highScore.slice(0,5)));
     }
 }
+
+//this helps in calling the obstacles in intervals
 function everyinterval(n) {
   if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
   return false;
@@ -112,11 +113,12 @@ function sound(src) {
     await this.sound.play();
   }
   this.stop =  function(){
-     if(this.sound.play() !== undefined){
-         this.sound.play().then(a => {
-             this.sound.pause();})
+    if(this.sound.play() !== undefined){
+      this.sound.play().then(a => {
+        this.sound.pause();
+      })
+    }
   }
-}
 }
 
 function component(width, height, color, x, y,type) {
@@ -128,17 +130,17 @@ function component(width, height, color, x, y,type) {
   this.speedX = 0;
   this.speedY = 0;
   this.update = function(){
-  ctx = myGameArea.context;
-  if (this.type == "text") {
+    ctx = myGameArea.context;
+    if (this.type == "text") {
       ctx.font = this.width + " " + this.height;
       ctx.fillStyle = color;
       ctx.fillText(this.text, this.x, this.y);
-    } else {
-        ctx.fillStyle = color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }else {
+      ctx.fillStyle = color;
+      ctx.fillRect(this.x, this.y, this.width, this.height);
     }
-}
-this.newPos = function() {
+  }
+  this.newPos = function() {
     this.x += this.speedX;
     this.y += this.speedY;
   }
@@ -152,10 +154,7 @@ this.newPos = function() {
     var othertop = otherobj.y;
     var otherbottom = otherobj.y + (otherobj.height);
     var crash = true;
-    if (((mybottom < othertop) ||
-    (mytop > otherbottom) ||
-    (myright < otherleft) ||
-    (myleft > otherright)) && mytop>-29 && mybottom<399) {
+    if (((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) ||(myleft > otherright)) && mytop>-29 && mybottom<399) {
       crash = false;
     }
     return crash;
@@ -164,7 +163,7 @@ this.newPos = function() {
 
 
 function updateGameArea() {
-    var x, y,height, gap, minHeight, maxHeight, minGap, maxGap;
+  var x, y,height, gap, minHeight, maxHeight, minGap, maxGap;
   for (i = 0; i < myObstacles.length; i += 1) {
     if (myGamePiece.crashWith(myObstacles[i])) {
       myMusic.stop();  
@@ -177,7 +176,6 @@ function updateGameArea() {
 
   myGamePiece.speedX = 0;
   myGamePiece.speedY = 0;
-  //if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -1; }
   if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 2; }
   if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -2; }
   if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 2; } 
