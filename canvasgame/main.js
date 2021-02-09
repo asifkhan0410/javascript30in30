@@ -27,9 +27,9 @@ if(storedhighscore!==null){
 }
 //console.log(storedhighscore)
 
-function start(){
-    playbutton.style.display="none";
-    startGame();
+async function start(){    
+    await startGame();
+    playbutton.style.display ="none";
     updateGameArea();
     myObstacles=[];    
 }
