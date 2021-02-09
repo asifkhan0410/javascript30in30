@@ -5,14 +5,14 @@ const highscore = document.querySelector('.highscore');
 
 
 //background gets initialized here
-var particles = Particles.init({
-	selector: '.background', 
-  color: ['#faf8f9'], //particles color
-  connectParticles: true, 
-  speed : 0.7,
-  maxParticles: 150,
-  sizeVariations:2
-});
+// var particles = Particles.init({
+// 	selector: '.background', 
+//   color: ['#faf8f9'], //particles color
+//   connectParticles: true, 
+//   speed : 0.7,
+//   maxParticles: 150,
+//   sizeVariations:2
+// });
 
 var myGamePiece;
 let myObstacles = [];
