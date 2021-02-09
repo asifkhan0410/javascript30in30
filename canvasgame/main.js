@@ -1,12 +1,13 @@
 const backgroundpicture = document.querySelector(".background");
 const title = document.querySelector(".title");
-const playbutton = document.querySelector(".playbutton")
-backgroundpicture.width = 1280;
-backgroundpicture.height= 600; 
+const playbutton = document.querySelector(".playbutton");
+const highscore = document.querySelector('.highscore');
 
+
+//background gets initialized here
 var particles = Particles.init({
-	selector: '.background',
-  color: ['#faf8f9'],
+	selector: '.background', 
+  color: ['#faf8f9'], //particles color
   connectParticles: true, 
   speed : 0.7,
   maxParticles: 150,
@@ -18,23 +19,25 @@ let myObstacles = [];
 var myScore;
 var mySound;
 var myMusic;
+
+//getting items from local storage
 let storedhighscore=JSON.parse(localStorage.getItem('highscore'));
 let highScore= [];
+
+//pushing the get item object into  a flat array
 if(storedhighscore!==null){
     storedhighscore.map(hs => {
     highScore.push(hs)
 });
 }
-//console.log(storedhighscore)
 
+//start function from where games starts
 async function start(){    
     await startGame();
     playbutton.style.display ="none";
     updateGameArea();
-    myObstacles=[];    
+    myObstacles=[]; //array is again initialized to remove the obstacles   
 }
-
-const highscore = document.querySelector('.highscore');
 
 function displayHighScore(){
     const heading = document.createElement('headerscore');
