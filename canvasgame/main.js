@@ -53,7 +53,7 @@ async function startGame() {
     myMusic = new sound("1992bgmusic.mp3");
     mySound = new sound("kick.wav");
     await myMusic.play();
-    await myGameArea.start();
+    myGameArea.start();
 }
 
 var myGameArea = {
@@ -164,9 +164,9 @@ function updateGameArea() {
     var x, y,height, gap, minHeight, maxHeight, minGap, maxGap;
   for (i = 0; i < myObstacles.length; i += 1) {
     if (myGamePiece.crashWith(myObstacles[i])) {
-        mySound.play();
-        myMusic.stop();
-        myGameArea.stop();
+      myMusic.stop();  
+      mySound.play();        
+      myGameArea.stop();
       return;
     }
   }
