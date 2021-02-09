@@ -1,5 +1,6 @@
 const backgroundpicture = document.querySelector(".background");
 const title = document.querySelector(".title");
+const playbutton = document.querySelector(".playbutton")
 backgroundpicture.width = 1280;
 backgroundpicture.height= 600; 
 
@@ -27,9 +28,10 @@ if(storedhighscore!==null){
 //console.log(storedhighscore)
 
 function start(){
+    playbutton.style.display="none";
     startGame();
     updateGameArea();
-    myObstacles=[]
+    myObstacles=[];    
 }
 
 const highscore = document.querySelector('.highscore');
@@ -44,15 +46,14 @@ function displayHighScore(){
     
 }
 
-function startGame() {
+async function startGame() {
     
     myGamePiece = new component(30, 30, "#faf8f9", 10, 120);
     myScore = new component("20px", "Consolas", "#faf8f9", 540, 35, "text");
     myMusic = new sound("1992bgmusic.mp3");
     mySound = new sound("kick.wav");
-    console.log(myMusic)
-    myMusic.play();
-    myGameArea.start();
+    await myMusic.play();
+    await myGameArea.start();
 }
 
 var myGameArea = {
@@ -81,6 +82,7 @@ var myGameArea = {
     clearInterval(this.interval);
     title.style.display ="block";
     highscore.style.display ="block";
+    playbutton.style.display ="block"
     highScore.push(myGameArea.frameNo);
     highScore.sort((a,b) => a<b?1:-1)
     highscore.innerHTML = "High Score"
