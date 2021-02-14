@@ -3,6 +3,11 @@ const video = player.querySelector('.viewer');
 const progress = player.querySelector('.progress');
 const progressBar = player.querySelector('.progress__filled');
 const toggle = player.querySelector('.toggle');
+const fullscreen = player.querySelector('.fullscreen');
+const volicon = player.querySelector('.volume');
+const volbar = player.querySelector('.volumebar');
+const speedbar = player.querySelector('.speedbar');
+const speed = player.querySelector('.speed');
 const skipButtons = player.querySelectorAll('[data-skip]');
 const ranges = player.querySelectorAll('.player__slider');
 
@@ -13,13 +18,18 @@ function togglePlay() {
 }
 
 function updateButton() {
-    const icon = this.paused ? '►' : '❚ ❚';
+    const icon = this.paused ? '▶' : '⏸️';
     console.log(icon);
     toggle.textContent = icon;
 }
 
+
 function skip() {
     video.currentTime += parseFloat(this.dataset.skip);
+}
+
+function fscreen(){
+    player.style.width === `100%`? player.style.width = `75%`:player.style.width = `100%`;
 }
 
 function handleRangeUpdate() {
@@ -40,8 +50,13 @@ video.addEventListener('click', togglePlay);
 video.addEventListener('play', updateButton);
 video.addEventListener('pause', updateButton);
 video.addEventListener('timeupdate', handleProgress);
+volicon.addEventListener('mouseover', ()=> {volbar.style.display="flex"});
+//volicon.addEventListener('mouseout', ()=> {volbar.style.display="none"});
+speedbar.addEventListener('mouseover', (e)=> {speedbar.style.display="flex";console.log(e)});
+//speed.addEventListener('mouseout', ()=> {speedbar.style.display="none"});
 
 toggle.addEventListener('click', togglePlay);
+fullscreen.addEventListener('click', fscreen);
 skipButtons.forEach(button => button.addEventListener('click', skip));
 ranges.forEach(range => range.addEventListener('change', handleRangeUpdate));
 ranges.forEach(range => range.addEventListener('mousemove', handleRangeUpdate));
