@@ -85,6 +85,5 @@
         console.log(obj[item])
         obj[item]++;
         return obj;
-        console.log(obj)
       },{})
       console.log(suminstance)
