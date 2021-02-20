@@ -43,7 +43,7 @@ function getVideo() {
     const link = document.createElement('a');
     link.href = data;
     link.setAttribute('download', 'handsomebuoy');
-    link.textContent = "Download Image"
+    link.innerHTML = `<img src="${data}" alt="Handsome Man" />`;
     strip.insertBefore(link, strip.firstChild);
   }
 
