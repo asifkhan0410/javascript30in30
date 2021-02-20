@@ -51,82 +51,12 @@
     <li data-time="5:49">
       Video 15
     </li>
-    <li data-time="5:52">
-      Video 16
-    </li>
-    <li data-time="5:50">
-      Video 17
-    </li>
-    <li data-time="9:13">
-      Video 18
-    </li>
-    <li data-time="11:51">
-      Video 19
-    </li>
-    <li data-time="7:58">
-      Video 20
-    </li>
-    <li data-time="4:40">
-      Video 21
-    </li>
-    <li data-time="4:45">
-      Video 22
-    </li>
-    <li data-time="6:46">
-      Video 23
-    </li>
-    <li data-time="7:24">
-      Video 24
-    </li>
-    <li data-time="7:12">
-      Video 25
-    </li>
-    <li data-time="5:23">
-      Video 26
-    </li>
-    <li data-time="3:34">
-      Video 27
-    </li>
-    <li data-time="8:22">
-      Video 28
-    </li>
-    <li data-time="5:17">
-      Video 29
-    </li>
-    <li data-time="3:10">
-      Video 30
-    </li>
-    <li data-time="4:43">
-      Video 31
-    </li>
-    <li data-time="19:43">
-      Video 32
-    </li>
-    <li data-time="0:47">
-      Video 33
-    </li>
-    <li data-time="0:47">
-      Video 34
-    </li>
-    <li data-time="3:14">
-      Video 35
-    </li>
-    <li data-time="3:59">
-      Video 36
-    </li>
-    <li data-time="2:43">
-      Video 37
-    </li>
-    <li data-time="4:17">
-      Video 38
-    </li>
-    <li data-time="6:56">
-      Video 39
-    </li>
   </ul>
+  <div class="totaltime"></div>
 <script>
 
     const timeNodes = [...document.querySelectorAll('[data-time]')];
+    const totaltime = document.querySelector('.totaltime')
     const seconds = timeNodes.map(node => node.dataset.time).map(timeCode =>{
         const [mins,secs] = timeCode.split(':').map(parseFloat); //map(parseFloat) converts a sting to a array of numbers
         return (mins*60) + secs;
@@ -139,6 +69,7 @@
     const min = Math.floor(secondsLeft/60);
     secondsLeft = secondsLeft % 60;
 
+    totaltime.innerHTML = `Total time : ${hour}h ${min}m ${secondsLeft}s`
 </script>
 </body>
 </html>
