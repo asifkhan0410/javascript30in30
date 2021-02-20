@@ -2,6 +2,7 @@ window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogn
 
 const recognition = new SpeechRecognition();
   recognition.interimResults = true; // gives immediated population of what we speak
+  recognition.lang = 'en-US';
   
   let p = document.createElement('p');
   const words = document.querySelector('.words');
@@ -19,6 +20,10 @@ const recognition = new SpeechRecognition();
       if (e.results[0].isFinal) {
         p = document.createElement('p');
         words.appendChild(p);
+      }
+
+      if(transcript.includes('clear the screen')){
+            words.innerHTML="";
       }
   });
 
