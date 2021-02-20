@@ -128,9 +128,10 @@
 
     const timeNodes = [...document.querySelectorAll('[data-time]')];
     const seconds = timeNodes.map(node => node.dataset.time).map(timeCode =>{
-        const [mins,secs] = timeCode.split(':').map(parseFloat);
+        const [mins,secs] = timeCode.split(':').map(parseFloat); //map(parseFloat) converts a sting to a array of numbers
         return (mins*60) + secs;
-    })
+    }).reduce((total,vidseconds) => total + vidseconds);
+    
 </script>
 </body>
 </html>
