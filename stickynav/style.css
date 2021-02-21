@@ -24,6 +24,10 @@ html {
     transform: scale(0.98);
     transition: transform 0.5s;
   }
+
+  .fixed-nav .site-wrap{
+      transform: scale(1);
+  }
   
   header {
     text-align: center;
@@ -49,6 +53,10 @@ html {
     position: relative;
     z-index: 1;
   }
+
+  .fixed-nav nav{
+      position: sticky;
+  }
   
   nav ul {
     margin: 0;
@@ -72,6 +80,10 @@ html {
     transition: all .5s;
     font-weight: 600;
     font-size: 30px;
+  }
+
+  .fixed-nav li.logo{
+      max-width: 500px;
   }
   
   li.logo a {
