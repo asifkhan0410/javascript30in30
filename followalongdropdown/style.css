@@ -9,16 +9,21 @@ html {
 
 body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-height: 100vh;
-  background:
-    linear-gradient(45deg, hsla(340, 100%, 55%, 1) 0%, hsla(340, 100%, 55%, 0) 70%),
+  background: #0b0c10
+    /* linear-gradient(45deg, hsla(340, 100%, 55%, 1) 0%, hsla(340, 100%, 55%, 0) 70%),
     linear-gradient(135deg, hsla(225, 95%, 50%, 1) 10%, hsla(225, 95%, 50%, 0) 80%),
     linear-gradient(225deg, hsla(140, 90%, 50%, 1) 10%, hsla(140, 90%, 50%, 0) 80%),
-    linear-gradient(315deg, hsla(35, 95%, 55%, 1) 100%, hsla(35, 95%, 55%, 0) 70%);
+    linear-gradient(315deg, hsla(35, 95%, 55%, 1) 100%, hsla(35, 95%, 55%, 0) 70%); */
 }
 
 h2 {
   margin-top: 0;
+  font-size: 3rem;
+  color: white;
   padding-top: .8em;
 }
 
@@ -31,7 +36,7 @@ nav {
   color: #66fcf1;
   text-decoration: none;
   font-size: 20px;
-  background: rgba(0,0,0,0.2);
+  background:#1f2833;
   padding: 10px 20px;
   display: inline-block;
   margin: 20px;
@@ -110,6 +115,7 @@ nav ul {
 
 .bio img {
   float: left;
+  width: 30%;
   margin-right: 20px;
 }
 
@@ -125,7 +131,7 @@ nav ul {
 
 .dropdown a {
   text-decoration: none;
-  color: #66fcf1;
+  color: #0b0c10;
 }
 
 a.button {
@@ -138,5 +144,5 @@ a.button {
 
 /* Matches Twitter, TWITTER, twitter, tWitter, TWiTTeR... */
 .button[href*=twitter] { background: #019FE9; }
-.button[href*=facebook] { background: #3B5998; }
-.button[href*=projects] { background: #ffc600; }
+.button[href*=linkedin] { background: #0a66c2; }
+.button[href*=hashnode] { background: #2962ff; }
