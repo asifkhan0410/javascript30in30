@@ -8,4 +8,5 @@ const divs = document.querySelectorAll('div');
 
   divs.forEach(div => div.addEventListener('click', logText, {
     capture: false, //helps to determine whether the capture will be fron inside to outside or vice-versa
+    once: true //this allows an element to be clicked once.
   }));
