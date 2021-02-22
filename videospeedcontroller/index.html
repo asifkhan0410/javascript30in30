@@ -25,7 +25,7 @@
         const min = 0.5;
         const max = 3; 
         const height = Math.round(percent*100) + '%';
-        const playbackRate = height*(max-min) + min;
+        const playbackRate = percent *(max-min) + min;
         bar.style.height =height;
         bar.textContent = playbackRate.toFixed(2) + 'x';
         video.playbackRate = playbackRate;
