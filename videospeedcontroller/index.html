@@ -22,8 +22,8 @@
     function handleMove(e){
         const y = e.pageY - this.offsetTop;
         const percent = y/this.offsetHeight;
-        const min = 0.5;
-        const max = 3; 
+        const min = 0.48;
+        const max = 3.02; 
         const height = Math.round(percent*100) + '%';
         const playbackRate = percent *(max-min) + min;
         bar.style.height =height;
