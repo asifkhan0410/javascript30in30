@@ -7,10 +7,15 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="left">  
+    <h1>Whack-a-mole!</h1>
+    <h4>High Scores</h4>
+</div>
 
-  <h1>Whack-a-mole! <span class="score">0</span></h1>
-  
+<div class="right">
 
+  <button onClick="startGame()">Start Game!</button>
+  <h2>Score : <span class="score">0</span></h2>
   <div class="game">
     <div class="hole hole1">
       <div class="mole"></div>
@@ -31,8 +36,7 @@
       <div class="mole"></div>
     </div>
   </div>
-
-  <button onClick="startGame()">Start!</button>
+</div>  
 
 <script src="script.js"></script>
 </body>

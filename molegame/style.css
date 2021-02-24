@@ -1,7 +1,7 @@
 html {
     box-sizing: border-box;
     font-size: 10px;
-    background: #66fcf1;
+    background: white;
   }
   
   *, *:before, *:after {
@@ -12,18 +12,27 @@ html {
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: column;
     font-family: 'Amatic SC', cursive;
   }
-  
   h1 {
     text-align: center;
-    font-size: 10rem;
+    font-size: 7rem;
     line-height: 1;
     margin-bottom: 0;
   }
+  h2 {
+    text-align: center;
+    font-size: 4rem;
+    line-height: 1;
+  }
+  h4{
+    font-size: 4rem;
+    background-color: #66fcf1;
+    width: 100%;
+    text-align: center;
+  }
   button{
-    margin: 4% 41%;
+    margin: 4% 38% 4%;
     color: #faf8f9;
     background-color: #161009;
     padding: 10px 30px;
@@ -33,6 +42,26 @@ html {
     font-weight: bold;
     border-radius: 5px;
   }
+  .left{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    border-right: 2px solid;
+    height: 100vh;
+  }
+  .left >h1{
+      color: whitesmoke;
+  }
+  .right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    padding: 20px;
+  }
   .score {
     background: rgb(87 ,197, 189);
     padding: 0 3rem;
@@ -41,9 +70,11 @@ html {
   }
   
   .game {
-    width: 600px;
-    height: 400px;
+    width: 700px;
+    height: 450px;
+    box-shadow: 0px 0px 16px #66fcf16e;
     display: flex;
+    padding: 20px;
     flex-wrap: wrap;
     margin: 0 auto;
   }
