@@ -48,7 +48,7 @@ html {
     padding: 2rem;
   }
   
-  .timer__button {
+  .timer__button, .timer__start {
     background: none;
     border: 0;
     cursor: pointer;
@@ -63,7 +63,7 @@ html {
   }
   
   .timer__button:hover,
-  .timer__button:focus {
+  .timer__button:focus, .timer__start:hover , .timer__start:focus {
     background: rgba(0,0,0,0.2);
     outline: 0;
   }
