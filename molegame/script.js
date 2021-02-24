@@ -34,7 +34,10 @@ function startGame(){
     timeUp = false;
     score = 0 ;
     peep();
-    setTimeout(()=> timeUp = true, 10000);
+    setTimeout(()=> {
+        timeUp = true
+        alert('Times Up!!!')
+    }, 10000);
 }
 
 function bonkOnHead(e){

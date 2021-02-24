@@ -20,9 +20,11 @@ html {
     line-height: 1;
     margin-bottom: 0;
   }
-  
+  button{
+      margin: 4% 50%;
+  }
   .score {
-    background: rgba(255,255,255,0.2);
+    background: rgb(87 ,197, 189);
     padding: 0 3rem;
     line-height: 1;
     border-radius: 1rem;
