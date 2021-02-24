@@ -110,4 +110,12 @@ html {
   .hole.up .mole {
     top: 0;
   }
+
+  .scores{
+      width:100%;
+  }
+  .scores> li{
+    color:aliceblue;
+    font-size: 3rem; 
+  }
   

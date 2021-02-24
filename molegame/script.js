@@ -1,10 +1,17 @@
 const holes = document.querySelectorAll('.hole');
 const scoreBoard = document.querySelector('.score');
 const moles = document.querySelectorAll('.mole');
-const button = document.querySelector('button')
+const button = document.querySelector('button');
+const highScore = document.querySelector('.scores')
 let lastHole;
 let timeUp = false;
 let score=0;
+let scorearr = JSON.parse(localStorage.getItem('score')) || [];
+//let namearr = JSON.parse(localStorage.getItem('names')) || [];
+
+highScore.innerHTML = scorearr.map(score => {
+    return `<li>${score}</li>`
+}).join('');
 
 function randomTime(min,max){
     return Math.round(Math.random()*(max-min) + min);
@@ -34,12 +41,19 @@ function startGame(){
     scoreBoard.textContent = 0;
     timeUp = false;
     score = 0 ;
+    //const name = prompt("Enter you name")
     button.setAttribute('disabled', 'true');
     peep();
     setTimeout(()=> {
-        timeUp = true
+        timeUp = true;
+        scorearr.push(score);
+        localStorage.setItem('score', JSON.stringify(scorearr.slice(0,4)));
+        //localStorage.setItem('names', JSON.stringify(namearr.slice(0,4)));
         button.removeAttribute('disabled', 'false')
-        alert('Times Up!!!')
+        alert('Times Up!!!');
+        highScore.innerHTML = scorearr.map(score => {
+            return `<li>${score}</li>`
+        }).join('');
     }, 10000);
 }
 
