@@ -1,6 +1,7 @@
 const holes = document.querySelectorAll('.hole');
 const scoreBoard = document.querySelector('.score');
 const moles = document.querySelectorAll('.mole');
+const button = document.querySelector('button')
 let lastHole;
 let timeUp = false;
 let score=0;
@@ -33,9 +34,11 @@ function startGame(){
     scoreBoard.textContent = 0;
     timeUp = false;
     score = 0 ;
+    button.setAttribute('disabled', 'true');
     peep();
     setTimeout(()=> {
         timeUp = true
+        button.removeAttribute('disabled', 'false')
         alert('Times Up!!!')
     }, 10000);
 }
