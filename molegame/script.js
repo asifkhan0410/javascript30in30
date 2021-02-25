@@ -47,11 +47,12 @@ function startGame(){
     setTimeout(()=> {
         timeUp = true;
         scorearr.push(score);
+        scorearr.sort((a,b) => a<b ? 1: -1)
         localStorage.setItem('score', JSON.stringify(scorearr.slice(0,4)));
         //localStorage.setItem('names', JSON.stringify(namearr.slice(0,4)));
         button.removeAttribute('disabled', 'false')
         alert('Times Up!!!');
-        highScore.innerHTML = scorearr.map(score => {
+        highScore.innerHTML = scorearr.slice(0,4).map(score => {
             return `<li>${score}</li>`
         }).join('');
     }, 10000);
