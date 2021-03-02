@@ -87,19 +87,19 @@ html {
   
   .hole:after {
     display: block;
-    background: url(dirt.svg) bottom center no-repeat;
+    background: url(grass.svg) bottom center no-repeat;
     background-size: contain;
     content: '';
     width: 100%;
-    height:70px;
+    height:125px;
     position: absolute;
     z-index: 2;
     bottom: -30px;
   }
   
   .mole {
-    background: url('mole.svg') bottom center no-repeat;
-    background-size: 60%;
+    background: url('rabbit.svg') bottom center no-repeat;
+    background-size: 80%;
     position: absolute;
     top: 100%;
     width: 100%;
